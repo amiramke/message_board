@@ -27,11 +27,11 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: db/development
+  database: mb_development
   host: localhost
 
 test:
   adapter: postgresql
   encoding: utf8
-  database: db/test
+  database: mb_test
   host: localhost
