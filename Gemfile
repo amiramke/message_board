@@ -5,8 +5,13 @@ gem 'thin'
 
 gem 'rails-backbone'
 gem 'jquery-rails'
+gem 'ejs'
+gem 'flutie'
+gem 'rabl'
 
 gem 'pg'
+
+gem 'backbone-support'
 
 # Gems used only for assets and not required
 # in production environments by default.
