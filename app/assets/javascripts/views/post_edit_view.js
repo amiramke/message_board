@@ -3,38 +3,42 @@ MessageBoard.Views.PostsEditView = Backbone.View.extend({
 	id: "edit-post",
 
 	events: {
-    "submit": "update",
+    "click button#submit-post": "update",
+    "click button#delete-post": "destroy",
   },
 	
   initialize: function(options) {
-    _.bindAll(this, "render", "updated");
   },
 
 	render: function () {
-    //this.$el.attr("id", "post_" + this.model.id);
     this.$el.html(JST['posts/edit']({ post: this.model }));
     this.renderFormContents();
     return this;
   },
 	
+  destroy: function (e) {
+    e.preventDefault();
+    this.model.destroy(
+      { success: this.destroyed(),
+        // success: function(model, response, options) {
+        //   this.destroyed();
+        // },
+        error: function(model, xhr, options) {
+        }
+      });
+  },
+
   renderFormContents: function() {
     this.$('label').attr("for", "post_updated_" + this.model.get('id'));
     this.$('input#edit-post-title').val(this.model.escape('title'));
-    //alert(this.model.escape('title'));
 
     this.$('label').attr("for", "post_updated_" + this.model.get('id'));
     this.$('input#edit-post-message').val(this.model.escape('message'));
-    //alert(this.model.escape('message'));
   },
 
 	renderFlash: function(flashText) {
     this.$el.prepend(JST['posts/flash']({ flashText: flashText, type: 'success' }));
   },
-         
-  // postUrl: function() {
-  //   alert(this.model.get('id'));
-  //   return "#posts/";
-  // },
 	
   update: function(e) {
     e.preventDefault();
@@ -49,12 +53,17 @@ MessageBoard.Views.PostsEditView = Backbone.View.extend({
     this.model.set({ title: this.$('input[name=title]').val(), message: this.$('input[name=message]').val()});
   },
 
+  destroyed: function() {
+    var flash = "Deleted Post " + this.model.escape('title');
+
+    this.render();
+    this.renderFlash(flash);
+  },
+
   updated: function() {
     var flash = "Edited Post " + this.model.escape('title');
 
-    //this.collection.add(this.model);
-    //this.newPost();
-    //this.render();
+    this.render();
     this.renderFlash(flash);
   }
 

@@ -1,4 +1,4 @@
 <!-- app/assets/templates/posts/item.jst.ejs -->
   <td><a class="update" href="#posts/<%= post.id %>">Edit</td>
   <td><%= post.escape('title') %></td>
-  <td><a class="destroy" href="#destroy">Delete</a></td>
+  <td><a class="destroy" href="#destroy/<%= post.id %>">Delete</td>

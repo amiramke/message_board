@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 	respond_to :json, :html
 
-	#wrap_parameters :post
+	wrap_parameters :post
 
 	def index
 		respond_with(@posts = Post.all)
@@ -19,6 +19,10 @@ class PostsController < ApplicationController
 
 	def show
     respond_with(@post = Post.find(params[:id]))
+  end
+
+  def destroy
+  	respond_with(Post.delete(params[:id]))
   end
   
 end
