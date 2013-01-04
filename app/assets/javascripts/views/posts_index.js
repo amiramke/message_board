@@ -2,6 +2,8 @@ MessageBoard.Views.PostsIndex = Backbone.View.extend({
   
   initialize: function(){
     _.bindAll(this, "render");
+    this.collection.bind("destroy", this.render);
+
   },
 
   render: function () {
