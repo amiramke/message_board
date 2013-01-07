@@ -1,8 +1,8 @@
-MessageBoard.Routers.Posts = Backbone.Router.extend({
+MessageBoard.Routers.Posts = Support.SwappingRouter.extend({
 	
 	initialize: function(options) {
-    this.el = $('#posts-list');
-    this.collection = options.collections;
+    this.el = $('#posts');
+    this.collection = options.collection;
   },
 
 	routes: {
@@ -13,18 +13,21 @@ MessageBoard.Routers.Posts = Backbone.Router.extend({
 
 	index: function() {
     var view = new MessageBoard.Views.PostsIndex({ collection: MessageBoard.posts });
-    $('body').html(view.render().$el);
+    this.swap(view);
+    // $('tbody').html(view.render().$el);
 	  },
 
 	newPost: function() {
 		var view = new MessageBoard.Views.PostsNew({ collection: MessageBoard.posts });
-		$('body').html(view.render().$el);
+		this.swap(view);
+		// $('tbody').html(view.render().$el);
 	},
 
 	editPost: function(id) {
 		var post = this.collection.get(id);
     var view = new MessageBoard.Views.PostsEditView({ model: post });
-    $('body').html(view.render().$el);
+    this.swap(view);
+    // $('tbody').html(view.render().$el);
 	},
 
 });

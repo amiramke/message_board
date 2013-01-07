@@ -8,7 +8,7 @@ window.MessageBoard = {
     this.posts = new MessageBoard.Collections.Posts(data.posts);
     //this.users = new ExampleApp.Collections.Users(data.users);
 
-    new MessageBoard.Routers.Posts({ collections: this.posts });
+    new MessageBoard.Routers.Posts({ collection: this.posts });
     Backbone.history.start();
 
   }
