@@ -1,7 +1,28 @@
 <!-- app/views/posts/index.html.erb -->
+<h1>Posts</h1>
+
+<div id="posts">
+</div>
+
+<script type="text/json" id="bootstrap">
+  {
+    "posts": <%= @posts.to_json.html_safe %>
+  }
+</script>
 
 <%= content_for :javascript do -%>
-  <%= javascript_tag do %>
+
+	<script type="text/javascript">
+    $(function () {
+      var div = $('<div></div>');
+      div.html($('#bootstrap').text());
+      var data = JSON.parse(div.text());
+
+      MessageBoard.initialize(data);
+    });
+  </script>
+<!-- 
+  <#%= javascript_tag do %>
     MessageBoard.initialize({ posts: <%= @posts.to_json.html_safe -%> });
-  <% end %>
+  <#% end %> -->
 <% end -%>

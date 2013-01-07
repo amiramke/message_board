@@ -7,6 +7,7 @@ gem 'rails-backbone'
 gem 'jquery-rails'
 gem 'ejs'
 gem 'flutie'
+gem 'clearance'
 gem 'rabl'
 
 gem 'pg'
