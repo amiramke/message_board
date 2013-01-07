@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-	respond_to :json, :html
+	before_filter :authorize
+  respond_to :json, :html
 
 	wrap_parameters :post
 
